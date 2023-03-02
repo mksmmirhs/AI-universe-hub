@@ -59,17 +59,20 @@ const showElementsToUi = (aitools, showall, sortdate) => {
     
     `;
     uiArea.appendChild(createCol);
+    loadingFunction(false);
   });
 };
 
 let allItem = false;
 // see all item function
 const seeAllItem = () => {
+  loadingFunction(true);
   allItem = true;
   fetchAllDataFromApi(allItem, false);
 };
 // sort item to ui
 const sortDataToUi = () => {
+  loadingFunction(true);
   fetchAllDataFromApi(allItem, true);
 };
 const sortByDate = aitools => {
@@ -77,4 +80,14 @@ const sortByDate = aitools => {
     return new Date(a.published_in) - new Date(b.published_in);
   });
 };
+// loading function
+const loadingFunction = state => {
+  const loadingIcon = document.getElementById('loading');
+  if (state === true) {
+    loadingIcon.classList.remove('d-none');
+  } else {
+    loadingIcon.classList.add('d-none');
+  }
+};
 fetchAllDataFromApi();
+loadingFunction(true);
