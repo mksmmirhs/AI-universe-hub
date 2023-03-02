@@ -1,12 +1,19 @@
 // fetch all data from api
-const fetchAllDataFromApi = () => {
+const fetchAllDataFromApi = showall => {
   fetch('https://openapi.programming-hero.com/api/ai/tools')
     .then(res => res.json())
-    .then(data => showElementsToUi(data.data.tools));
+    .then(data => showElementsToUi(data.data.tools, showall));
 };
 
-const showElementsToUi = aitools => {
+const showElementsToUi = (aitools, showall) => {
   const uiArea = document.getElementById('uiarea-for-ai');
+  // see more functionality
+  if (!showall) {
+    aitools.splice(6);
+  } else {
+    const seeMoreBtn = document.getElementById('see-more-btn');
+    seeMoreBtn.classList.add('d-none');
+  }
   aitools.forEach(aitool => {
     const createCol = document.createElement('div');
     createCol.classList.add('col');
@@ -50,4 +57,8 @@ const showElementsToUi = aitools => {
   });
 };
 
+// see all item function
+const seeAllItem = () => {
+  fetchAllDataFromApi(true);
+};
 fetchAllDataFromApi();
