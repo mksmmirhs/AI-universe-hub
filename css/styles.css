@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+body {
+  font-family: 'Work Sans', sans-serif;
+}
+
+/* header styles */
+header h1 {
+  color: #111111;
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 53px;
+}
+
+.btn-arrow {
+  height: 50px;
+  width: 50px;
+  background: #fef7f7;
+  border-radius: 50%;
+}
