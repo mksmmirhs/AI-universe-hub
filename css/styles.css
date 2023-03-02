@@ -21,3 +21,18 @@ header h1 {
 .card-image-hight {
   height: 300px;
 }
+.modal-card-1 {
+  background: rgba(235, 87, 87, 0.05);
+  border: 1px solid #eb5757;
+  border-radius: 16px;
+  height: 511px;
+}
+.modal-card-2 {
+  background: #ffffff;
+  border: 1px solid #e7e7e7;
+  border-radius: 16px;
+}
+.card-1-info {
+  background: #ffffff;
+  border-radius: 16px;
+}

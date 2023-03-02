@@ -45,7 +45,7 @@ const showElementsToUi = (aitools, showall, sortdate) => {
           </div>
         </div>
         <div
-          class="col d-flex justify-content-end align-items-center"
+          class="col d-flex justify-content-end align-items-center" data-bs-toggle="modal" data-bs-target="#AiModal" onclick="modalIdFetch('${aitool.id}')"
         >
           <div
             class="btn-arrow d-flex align-items-center justify-content-center"
@@ -91,3 +91,11 @@ const loadingFunction = state => {
 };
 fetchAllDataFromApi();
 loadingFunction(true);
+//home page coding ended
+// modal coding started
+const modalIdFetch = id => {
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => console.log(data));
+};
