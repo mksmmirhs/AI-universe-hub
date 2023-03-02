@@ -1,18 +1,23 @@
 // fetch all data from api
-const fetchAllDataFromApi = showall => {
+
+const fetchAllDataFromApi = (showall, sortdate) => {
   fetch('https://openapi.programming-hero.com/api/ai/tools')
     .then(res => res.json())
-    .then(data => showElementsToUi(data.data.tools, showall));
+    .then(data => showElementsToUi(data.data.tools, showall, sortdate));
 };
 
-const showElementsToUi = (aitools, showall) => {
+const showElementsToUi = (aitools, showall, sortdate) => {
   const uiArea = document.getElementById('uiarea-for-ai');
+  uiArea.innerHTML = '';
   // see more functionality
   if (!showall) {
     aitools.splice(6);
   } else {
     const seeMoreBtn = document.getElementById('see-more-btn');
     seeMoreBtn.classList.add('d-none');
+  }
+  if (sortdate === true) {
+    sortByDate(aitools);
   }
   aitools.forEach(aitool => {
     const createCol = document.createElement('div');
@@ -36,7 +41,7 @@ const showElementsToUi = (aitools, showall) => {
           <h4>${aitool.name}</h4>
           <div class="d-flex align-items-center text-secondary">
             <i class="fa-solid fa-calendar-days"></i>
-            <p class="ms-1 my-auto">11/01/2022</p>
+            <p class="ms-1 my-auto">${aitool.published_in}</p>
           </div>
         </div>
         <div
@@ -57,8 +62,19 @@ const showElementsToUi = (aitools, showall) => {
   });
 };
 
+let allItem = false;
 // see all item function
 const seeAllItem = () => {
-  fetchAllDataFromApi(true);
+  allItem = true;
+  fetchAllDataFromApi(allItem, false);
+};
+// sort item to ui
+const sortDataToUi = () => {
+  fetchAllDataFromApi(allItem, true);
+};
+const sortByDate = aitools => {
+  aitools.sort((a, b) => {
+    return new Date(a.published_in) - new Date(b.published_in);
+  });
 };
 fetchAllDataFromApi();
