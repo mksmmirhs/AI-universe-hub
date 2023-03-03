@@ -97,5 +97,70 @@ const modalIdFetch = id => {
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   fetch(url)
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => showModalToUi(data.data));
+};
+const showModalToUi = data => {
+  const selectModal = document.getElementById('modal-ui');
+  selectModal.innerHTML = '';
+  const createFirstCol = document.createElement('div');
+  createFirstCol.classList.add('col');
+  console.log(data);
+
+  // set dynamic features element
+  let features = '';
+  for (elm in data.features) {
+    features += `<li>${data.features[elm].feature_name}</li>`;
+  }
+  // set dynamic Integrations
+  let integrations = '';
+  if (data.integrations !== null) {
+    data.integrations.forEach(element => {
+      integrations += `<li>${element}</li>`;
+    });
+  } else {
+    integrations = 'No data Found';
+  }
+  createFirstCol.innerHTML = `
+  
+  
+  <div class="card modal-card-1">
+  <div class="card-body">
+    <h3 class="mb-4">${data.description}
+    </h3>
+    <div class="d-flex mb-4 mt-5">
+      <div class="card-1-info p-2 mx-3 text-success">
+        <h4>${data.pricing !== null ? data.pricing[0].price : 'free of cost'} ${
+    data.pricing !== null ? data.pricing[0].plan : '/basic'
+  }</h4>
+      </div>
+      <div class="card-1-info p-2 text-warning">
+      <h4>${data.pricing !== null ? data.pricing[1].price : 'free of cost'} ${
+    data.pricing !== null ? data.pricing[1].plan : '/Pro'
+  }</h4>
+      </div>
+      <div class="card-1-info p-2 mx-3 text-danger">
+      <h4>${data.pricing !== null ? data.pricing[2].price : 'free of cost'} ${
+    data.pricing !== null ? data.pricing[2].plan : '/Enterprise'
+  }</h4>
+      </div>
+    </div>
+    <div class="d-flex mt-5">
+      <div>
+        <h3>Features</h3>
+        <ul class="text-secondary">
+          ${features}
+        </ul>
+      </div>
+      <div class="ms-5">
+        <h3>Integrations</h3>
+        <ul class="text-secondary">
+          ${integrations}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  `;
+  selectModal.appendChild(createFirstCol);
 };
