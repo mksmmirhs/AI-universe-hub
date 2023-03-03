@@ -35,3 +35,19 @@ header h1 {
   background: #ffffff;
   border-radius: 16px;
 }
+#accuracy {
+  background: #eb5757;
+  border-radius: 8px;
+  padding: 4px;
+  left: 75%;
+  top: 3%;
+}
+
+/* media query for modal  */
+@media only screen and (min-width: 768px) {
+  .modal-card-1 {
+    height: 570px;
+  }
+  .modal-card-2 {
+    height: 570px;
+}

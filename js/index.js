@@ -127,13 +127,13 @@ const showModalToUi = data => {
   <div class="card-body">
     <h3 class="mb-4">${data.description}
     </h3>
-    <div class="d-flex mb-4 mt-5">
+    <div class="d-flex mb-4 mt-5 flex-column flex-md-row">
       <div class="card-1-info p-2 mx-3 text-success">
         <h4>${data.pricing !== null ? data.pricing[0].price : 'free of cost'} ${
     data.pricing !== null ? data.pricing[0].plan : '/basic'
   }</h4>
       </div>
-      <div class="card-1-info p-2 text-warning">
+      <div class="card-1-info p-2  my-2 mx-3 mx-md-0 text-warning">
       <h4>${data.pricing !== null ? data.pricing[1].price : 'free of cost'} ${
     data.pricing !== null ? data.pricing[1].plan : '/Pro'
   }</h4>
@@ -144,14 +144,14 @@ const showModalToUi = data => {
   }</h4>
       </div>
     </div>
-    <div class="d-flex mt-5">
+    <div class="d-flex mt-5 flex-column flex-md-row"">
       <div>
         <h3>Features</h3>
         <ul class="text-secondary">
           ${features}
         </ul>
       </div>
-      <div class="ms-5">
+      <div class="ms-md-5">
         <h3>Integrations</h3>
         <ul class="text-secondary">
           ${integrations}
@@ -163,4 +163,35 @@ const showModalToUi = data => {
   
   `;
   selectModal.appendChild(createFirstCol);
+
+  // modal section 2 start here
+  const createSecondCol = document.createElement('div');
+  createSecondCol.classList.add('col');
+  createSecondCol.innerHTML = `
+  
+  <div class="card modal-card-2">
+    <div class="card-body">
+        <div class="text-center position-relative mb-5">
+            <img class="img-fluid" src="${data.image_link[0]}" alt="" />
+              <p class="text-white position-absolute" id="accuracy">
+                ${data.accuracy.score * 100}% accuracy
+              </p>
+              <h1 class="mt-4" id="input-example">Hi, how are you doing today?</h1>
+              <p class="mt-2 text-secondary" id="output-example">
+                I'm doing well, thank you for asking. How can I assist
+                you today?
+              </p>
+        </div>
+      </div>
+  </div>
+  
+  `;
+  selectModal.appendChild(createSecondCol);
+
+  // set accuracy to ui
+  const accuracySection = document.getElementById('accuracy');
+  if (data.accuracy.score === null) {
+    accuracySection.classList.add('d-none');
+  }
+  console.log(data.input_output_examples[0]);
 };
