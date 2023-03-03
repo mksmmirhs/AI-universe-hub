@@ -104,7 +104,6 @@ const showModalToUi = data => {
   selectModal.innerHTML = '';
   const createFirstCol = document.createElement('div');
   createFirstCol.classList.add('col');
-  console.log(data);
 
   // set dynamic features element
   let features = '';
