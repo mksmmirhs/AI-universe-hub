@@ -176,10 +176,9 @@ const showModalToUi = data => {
               <p class="text-white position-absolute" id="accuracy">
                 ${data.accuracy.score * 100}% accuracy
               </p>
-              <h1 class="mt-4" id="input-example">Hi, how are you doing today?</h1>
+              <h1 class="mt-4" id="input-example">Can you give any example?</h1>
               <p class="mt-2 text-secondary" id="output-example">
-                I'm doing well, thank you for asking. How can I assist
-                you today?
+                No! Not Yet! Take a break!!!
               </p>
         </div>
       </div>
@@ -193,5 +192,11 @@ const showModalToUi = data => {
   if (data.accuracy.score === null) {
     accuracySection.classList.add('d-none');
   }
-  console.log(data.input_output_examples[0]);
+  // set input and output examples to ui
+  const inputExample = document.getElementById('input-example');
+  const outputExample = document.getElementById('output-example');
+  if (data.input_output_examples !== null) {
+    inputExample.innerHTML = data.input_output_examples[0].input;
+    outputExample.innerHTML = data.input_output_examples[0].output;
+  }
 };

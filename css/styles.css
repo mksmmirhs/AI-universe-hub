@@ -46,8 +46,9 @@ header h1 {
 /* media query for modal  */
 @media only screen and (min-width: 768px) {
   .modal-card-1 {
-    height: 570px;
+    height: 610px;
   }
   .modal-card-2 {
-    height: 570px;
+    height: 610px;
+  }
 }
