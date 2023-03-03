@@ -133,7 +133,7 @@ const showModalToUi = data => {
     data.pricing !== null ? data.pricing[0].plan : '/basic'
   }</h4>
       </div>
-      <div class="card-1-info p-2  my-2 mx-3 mx-md-0 text-warning">
+      <div class="card-1-info p-2  my-2 mx-3 mx-md-0  my-md-0 text-warning">
       <h4>${data.pricing !== null ? data.pricing[1].price : 'free of cost'} ${
     data.pricing !== null ? data.pricing[1].plan : '/Pro'
   }</h4>
